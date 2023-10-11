@@ -10,24 +10,20 @@ class Library {
 
 // write a "whenFn" that takes an arg of type "Any" and returns a String
 
-fun whenFN(arg:Any): String {
-    if (arg === "Hello") {
-        return "world";
-    }
-    if (arg === 0) {
-        return "zero";
-    }
-    if (arg === 1) {
-        return "one";
-    }
-    if (arg is Int) {
-        if (arg in 2...10) {
-            return "low number";
-        } else {
-            return "a number";
+fun whenFN(arg: Any): String {
+    return when (arg) {
+        "Hello" -> "world"
+        0 -> "zero"
+        1 -> "one"
+        is Int -> {
+            if (arg in 2..10) {
+                "low number"
+            } else {
+                "a number"
+            }
         }
+        else -> "I don't understand"
     }
-    return "I don't understand";
 }
 
 // write an "add" function that takes two Ints, returns an Int, and adds the values
@@ -44,14 +40,14 @@ fun sub(int1: Int, int2: Int): Int {
 
 // write a "mathOp" function that takes two Ints and a function (that takes two Ints and returns an Int), returns an Int, and applies the passed-in-function to the arguments
 
-fun mathOP(int1: Int, int2: Int, op:Fun): Int {
-    return op(int1, int2);
+fun mathOP(int1: Int, int2: Int, op: MathOperation): Int {
+    return op(int1, int2)
 }
 
 // write a class "Person" with first name, last name and age
 
-class Person(val firstName:String, val lastName: String, var age:Int) {
-    val debugString: String = "[Person firstname:" + firstName + " lastname:" + lastName + " age:" + age + "]";
+class Person(val firstName: String, val lastName: String, var age: Int) {
+    val debugString: String = "[Person firstname:$firstName lastname:$lastName age:$age]"
 }
 
 // write a class "Money" with amount and currency, and define a convert() method and the "+" operator
